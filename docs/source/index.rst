@@ -12,6 +12,7 @@ Welcome to makefile_study's documentation!
 
    start/begin.rst
    start/variables_and_printing.rst
+   start/multiple_files.rst
 
 
 

@@ -13,14 +13,19 @@ CFLAG =
 LINKER = gcc -o
 LFLAG = 
 
-$(Target) : main.o
-	$(LINKER) $(Target) main.o
+# Sources file
+SOURCES  := $(wildcard *.c)
+OBJECTS := $(SOURCES:.c=.o)
+
+$(Target) : $(OBJECTS)
+	$(LINKER) $(Target) $(LFLAG) $(OBJECTS)
 	@echo "Linking complete!"
 
-main.o : main.c
-	$(CC) main.c
+$(OBJECTS) : $(SOURCES)
+	$(CC) $(CFLAG) $(SOURCES)
 	@echo "Compilation complete!"
 
+PHONY: clean 
 clean :
-	rm -rf target main.o
+	rm -rf target $(OBJECTS)
 	@echo "Cleanup complete!"
