@@ -17,7 +17,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'makefile_study'
+project = 'Makefile Study'
 copyright = '2021, Jinping Wu'
 author = 'Jinping Wu'
 
