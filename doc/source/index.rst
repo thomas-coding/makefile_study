@@ -10,6 +10,8 @@ Welcome to makefile_study's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   start/begin.rst
+
 
 
 Indices and tables
