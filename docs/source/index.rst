@@ -11,6 +11,7 @@ Welcome to makefile_study's documentation!
    :caption: Contents:
 
    start/begin.rst
+   start/variables_and_printing.rst
 
 
 
