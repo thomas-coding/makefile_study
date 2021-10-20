@@ -6,26 +6,37 @@
 Target = target
 
 # Compile command and flag
-CC = gcc -c
+CC = gcc
 CFLAG = 
 
 # Linker command and flag
-LINKER = gcc -o
+LINKER = gcc
 LFLAG = 
 
-# Sources file
-SOURCES  := $(wildcard *.c)
-OBJECTS := $(SOURCES:%.c=%.o)
+# Dir
+SRC_DIR = src
+OBJ_DIR = obj
+BIN_DIR = bin
 
-$(Target) : $(OBJECTS)
-	$(LINKER) $@ $(LFLAG) $(OBJECTS)
+
+# Source files
+SOURCES  := $(wildcard $(SRC_DIR)/*.c)
+
+# OBJECT files
+OBJECTS := $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+# Header files
+INCLUDES := $(wildcard $(SRC_DIR)/*.h)
+
+$(BIN_DIR)/$(Target) : $(OBJECTS)
+	$(LINKER) -o $@ $(LFLAG) $(OBJECTS)
 	@echo "Linking complete!"
 
-$(OBJECTS) : %.o : %.c
-	$(CC) $(CFLAG) $<
+$(OBJECTS) : $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+	$(CC) $(CFLAG) -c $< -o $@
 	@echo "Compilation complete!"
 
 PHONY: clean 
 clean :
-	rm -rf $(Target) $(OBJECTS)
+	rm -rf $(BIN_DIR)/$(Target) $(OBJECTS)
 	@echo "Cleanup complete!"

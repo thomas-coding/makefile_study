@@ -14,6 +14,7 @@ Welcome to makefile_study's documentation!
    start/variables_and_printing.rst
    start/multiple_files.rst
    start/static_mode.rst
+   start/add_dir.rst
 
 
 
