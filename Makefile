@@ -15,17 +15,17 @@ LFLAG =
 
 # Sources file
 SOURCES  := $(wildcard *.c)
-OBJECTS := $(SOURCES:.c=.o)
+OBJECTS := $(SOURCES:%.c=%.o)
 
 $(Target) : $(OBJECTS)
-	$(LINKER) $(Target) $(LFLAG) $(OBJECTS)
+	$(LINKER) $@ $(LFLAG) $(OBJECTS)
 	@echo "Linking complete!"
 
-$(OBJECTS) : $(SOURCES)
-	$(CC) $(CFLAG) $(SOURCES)
+$(OBJECTS) : %.o : %.c
+	$(CC) $(CFLAG) $<
 	@echo "Compilation complete!"
 
 PHONY: clean 
 clean :
-	rm -rf target $(OBJECTS)
+	rm -rf $(Target) $(OBJECTS)
 	@echo "Cleanup complete!"
