@@ -28,7 +28,7 @@ OBJECTS := $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Header files
 INCLUDES := $(wildcard $(SRC_DIR)/*.h)
 
-$(BIN_DIR)/$(Target) : $(OBJECTS)
+$(BIN_DIR)/$(Target) : $(OBJ_DIR) $(BIN_DIR) $(OBJECTS)
 	$(LINKER) -o $@ $(LFLAG) $(OBJECTS)
 	@echo "Linking complete!"
 
@@ -38,5 +38,11 @@ $(OBJECTS) : $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 
 PHONY: clean 
 clean :
-	rm -rf $(BIN_DIR)/$(Target) $(OBJECTS)
+	rm -rf $(BIN_DIR) $(OBJ_DIR)
 	@echo "Cleanup complete!"
+
+$(OBJ_DIR):
+	mkdir -p $@
+
+$(BIN_DIR):
+	mkdir -p $@
